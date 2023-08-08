@@ -12,11 +12,9 @@ discovery and learning with MuleSoft.
 
 ### Categories
 
-- **API Development**: Code examples for designing robust APIs.
-- **Integration Patterns**: Sample configurations for various integration patterns.
-- **MuleSoft Tutorials**: Step-by-step guides and resources.
+- **Development Practices**: Code examples for developing robust APIs using best practices.
+- **System Design**: Architectural insights and guidelines for crafting scalable and efficient MuleSoft systems.
 - **DevOps Practices**: Scripts and tools for integrating MuleSoft into your DevOps practices.
-- **Product Updates**: Resources related to the latest MuleSoft features and releases.
 
 ## How to Use
 
