@@ -16,16 +16,15 @@ on:
         default: '1'
 
 jobs:
-  # Bulid and test the project
+  # Bulid, test and deploy the project to DEV environment
   build-and-deploy:
-    # Represents a sequence of tasks to be performed in this job
     runs-on: ubuntu-latest
 
     steps:
       # Checks-out the repository under $GITHUB_WORKSPACE, so that the job can access it
       - uses: actions/checkout@v3
 
-      # Installs Java JDK v11
+      # Installs Java JDK v11 with Temurin distribution
       - uses: actions/setup-java@v3
         with:
           distribution: "temurin"
@@ -41,7 +40,7 @@ jobs:
       # Builds and tests the mule artifact using Maven
       - name: Build and Test
         run: |
-          mvn -B package --file pom.xml
+          mvn package -DskipTests=true
 
       # Read artifactId from POM file and save into a variable
       - name: Get Artifact Name

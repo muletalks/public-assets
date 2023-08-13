@@ -32,6 +32,8 @@ on:
         
 jobs: 
   workflow: 
+    # Make sure to add the right path to the reusable workflow. 
+    # E.g. {organization}/{repository}/.github/workflows/{workflow_file_name}.yml@{branch}
     uses: muletalks/reusable-workflows/.github/workflows/dev-reusable-workflow.yml@master 
     secrets: inherit 
     with: 
