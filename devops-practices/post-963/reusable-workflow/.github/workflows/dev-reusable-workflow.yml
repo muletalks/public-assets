@@ -6,10 +6,10 @@ name: Deploy the Project to DEV environment
 on:
   workflow_call:
     inputs:
-      workerType: 
+      workerType:
         required: false
         type: string
-        default: "MICRO"
+        default: 'MICRO'
       workerCount:
         required: false
         type: string
@@ -17,7 +17,7 @@ on:
 
 jobs:
   # Bulid, test and deploy the project to DEV environment
-  build and deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,9 +29,9 @@ jobs:
       - name: Set up Java JDK 11 with Temurin
         uses: actions/setup-java@v3
         with:
-          distribution: "temurin"
-          java-version: "11"
-          cache: "maven"
+          distribution: 'temurin'
+          java-version: '11'
+          cache: 'maven'
 
       # Installs Maven v3.6.3
       - name: Set up Maven
