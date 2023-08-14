@@ -54,12 +54,11 @@ jobs:
           ARTIFACT_NAME: ${{ env.ARTIFACT_NAME }}
           CONNECTED_CLIENT_ID: ${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIENT_ID }}
           CONNECTED_CLIENT_SECRET: ${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIEN_SECRET }}
-          MULE_ENV: dev
           ANYPOINT_ENV: DEV
           WORKER_TYPE: ${{ github.event.inputs.workerType }}
           NUMBER_OF_WORKERS: ${{ github.event.inputs.workerCount }}
           REGION: eu-central-1
-          BUSINESS_GROUP: mboss37\muletalks
+          BUSINESS_GROUP: muletalks
           ANYPOINT_PLATFORM_URI: https://anypoint.mulesoft.com
           ANYPOINT_ANALYTICS_URI: https://analytics-ingest.anypoint.mulesoft.com
           ANYPOINT_PLATFORM_CLIENT_ID: ${{ secrets.MULETALKS_ANYPOINT_PLATFORM_CLIENT_ID }}
@@ -69,7 +68,6 @@ jobs:
           -Dapplication.name="$ARTIFACT_NAME-v1-dev" \
           -Danypoint.platform.muletalks.connectedapp.client_id=$CONNECTED_CLIENT_ID \
           -Danypoint.platform.muletalks.connectedapp.client_secret=$CONNECTED_CLIENT_SECRET \
-          -Dmule.env=$MULE_ENV \
           -Danypoint.muletalks.env=$ANYPOINT_ENV \
           -Danypoint.muletalks.workertype=$WORKER_TYPE \
           -Danypoint.muletalks.numberofworkers=$NUMBER_OF_WORKERS \
