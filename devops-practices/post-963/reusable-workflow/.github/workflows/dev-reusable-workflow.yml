@@ -17,7 +17,7 @@ on:
 
 jobs:
   # Bulid, test and deploy the project to DEV environment
-  build-and-deploy:
+  build and deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -39,8 +39,8 @@ jobs:
         with:
           maven-version: 3.6.3
 
-      # Builds and tests the mule artifact using Maven
-      - name: Build and Test
+      # Builds the mule artifact using Maven
+      - name: Build Artifact
         run: |
           mvn package -DskipTests=true
 
