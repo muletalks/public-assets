@@ -22,10 +22,12 @@ jobs:
 
     steps:
       # Checks-out the repository under $GITHUB_WORKSPACE, so that the job can access it
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
       # Installs Java JDK v11 with Temurin distribution
-      - uses: actions/setup-java@v3
+      - name: Set up Java JDK 11 with Temurin
+        uses: actions/setup-java@v3
         with:
           distribution: "temurin"
           java-version: "11"
