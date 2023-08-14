@@ -1,4 +1,6 @@
-# This workflow will build a MuleSoft project and deploy to the CloudHub INT enviornment
+# This is a parent workflow 
+# It will trigger the reusable workflow and pass the input parameters to it
+
 name: Build, Test and Deploy to DEV
 
 on:
@@ -33,7 +35,7 @@ on:
 jobs:
   workflow:
     # Make sure to add the right path to the reusable workflow.
-    # E.g. {organization}/{repository}/.github/workflows/{workflow_file_name}.yml@{branch}
+    # {organization}/{repository}/.github/workflows/{workflow_file_name}.yml@{branch}
     uses: muletalks/reusable-workflows/.github/workflows/dev-reusable-workflow.yml@master
     secrets: inherit
     with:

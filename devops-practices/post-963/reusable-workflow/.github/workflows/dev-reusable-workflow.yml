@@ -2,7 +2,7 @@
 
 name: Deploy the Project to DEV environment
 
-# Trigger when being called by another workflow
+# Trigger when being called from another workflow
 on:
   workflow_call:
     inputs:
@@ -16,7 +16,7 @@ on:
         default: '1'
 
 jobs:
-  # Bulid, test and deploy the project to DEV environment
+  # Bulid and deploy the project to DEV environment
   build-and-deploy:
     runs-on: ubuntu-latest
 
@@ -44,7 +44,7 @@ jobs:
         run: |
           mvn package -DskipTests=true
 
-      # Read artifactId from POM file and save into a variable
+      # Reads artifactId from POM file and sets it as an environment variable
       - name: Get Artifact Name
         run: echo "ARTIFACT_NAME=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
 
