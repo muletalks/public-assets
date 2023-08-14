@@ -1,41 +1,41 @@
-# This workflow will build a MuleSoft project and deploy to the CloudHub INT enviornment 
+# This workflow will build a MuleSoft project and deploy to the CloudHub INT enviornment
 name: Build, Test and Deploy to DEV
 
-on: 
-  # Trigger the workflow on push
-  push: 
-    branches: 
+on:
+  # Triggers the workflow on push
+  push:
+    branches:
       - develop
-    
+
   # Allows you to run this workflow manually from the Actions tab with input parameters
-  workflow_dispatch: 
-    inputs: 
-      workerType: 
-        description: 'Size of Mule Worker'      
-        required: true 
-        type: choice 
-        options: 
-          - MICRO 
-          - SMALL 
-          - MEDIUM 
-        default: MICRO 
-      workerCount: 
-        description: 'Number of Mule Workers'      
-        required: true 
-        type: choice 
-        options: 
-          - '1' 
-          - '2' 
-          - '3' 
-          - '4' 
+  workflow_dispatch:
+    inputs:
+      workerType:
+        description: 'Size of Mule Worker'
+        required: true
+        type: choice
+        options:
+          - MICRO
+          - SMALL
+          - MEDIUM
+        default: MICRO
+      workerCount:
+        description: 'Number of Mule Workers'
+        required: true
+        type: choice
+        options:
+          - '1'
+          - '2'
+          - '3'
+          - '4'
         default: '1'
-        
-jobs: 
-  workflow: 
-    # Make sure to add the right path to the reusable workflow. 
+
+jobs:
+  workflow:
+    # Make sure to add the right path to the reusable workflow.
     # E.g. {organization}/{repository}/.github/workflows/{workflow_file_name}.yml@{branch}
-    uses: muletalks/reusable-workflows/.github/workflows/dev-reusable-workflow.yml@master 
-    secrets: inherit 
-    with: 
-      workerType: ${{ inputs.workerType }} 
+    uses: muletalks/reusable-workflows/.github/workflows/dev-reusable-workflow.yml@master
+    secrets: inherit
+    with:
+      workerType: ${{ inputs.workerType }}
       workerCount: ${{ inputs.workerCount }}
