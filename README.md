@@ -24,7 +24,7 @@ questions or need further assistance, don't hesitate to [contact us](https://mul
 ## Contributing
 
 We welcome contributions! If you have suggestions, improvements, or corrections, please see our [contribution
-guidelines](https://github.com/muletalks/public-assets/blob/main/CONTRIBUTING.md) or open an issue.
+guidelines](https://github.com/muletalks/public-assets/blob/master/CONTRIBUTING.md) or open an issue.
 
 ## License
 
