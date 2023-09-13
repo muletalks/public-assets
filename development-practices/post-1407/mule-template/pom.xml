@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.muletalks</groupId>
@@ -45,15 +46,15 @@
 						<environment>${anypoint.env}</environment>
 						<workerType>${anypoint.workertype}</workerType>
 						<workers>${anypoint.numberofworkers}</workers>
-						<deploymentTimeout>${anypoint.esocrm.deployment.timeout}</deploymentTimeout>
+						<deploymentTimeout>${anypoint.deployment.timeout}</deploymentTimeout>
 						<properties>
 							<mule.env>${mule.env}</mule.env>
 							<mule.key>${mule.key}</mule.key>
-							<anypoint.platform.client_secret>${anypoint.platform.esocrm.client_secret}</anypoint.platform.client_secret>
-							<anypoint.platform.client_id>${anypoint.platform.esocrm.client_id}</anypoint.platform.client_id>
-							<anypoint.platform.base_uri>${anypoint.platform.eu1.base_uri}</anypoint.platform.base_uri>
-							<anypoint.platform.analytics_base_uri>${anypoint.platform.eu1.analytics_base_uri}</anypoint.platform.analytics_base_uri>
-							<anypoint.platform.config.analytics.agent.enabled>${anypoint.platform.esocrm.analytics.agent.enabled}</anypoint.platform.config.analytics.agent.enabled>
+							<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
+							<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
+							<anypoint.platform.base_uri>${anypoint.platform.base_uri}</anypoint.platform.base_uri>
+							<anypoint.platform.analytics_base_uri>${anypoint.platform.analytics_base_uri}</anypoint.platform.analytics_base_uri>
+							<anypoint.platform.config.analytics.agent.enabled>${anypoint.platform.analytics.agent.enabled}</anypoint.platform.config.analytics.agent.enabled>
 							<anypoint.platform.visualizer.layer>${api.layer}</anypoint.platform.visualizer.layer>
 						</properties>
 						<region>${anypoint.region}</region>
