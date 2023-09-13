@@ -14,15 +14,6 @@
         <apikit:router config-ref="template-api-config" />
     </flow>
     <flow name="get:\hello:template-api-config">
-        <ee:transform doc:name="Transform Message">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  message: "Hello World"
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+		<flow-ref doc:name="hello-world-subflow" doc:id="d733e4e4-c317-43be-807c-0176d5cf9f0d" name="hello-world-subflow"/>
     </flow>
 </mule>
