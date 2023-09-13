@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:anypoint-mq="http://www.mulesoft.org/schema/mule/anypoint-mq"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/anypoint-mq http://www.mulesoft.org/schema/mule/anypoint-mq/current/mule-anypoint-mq.xsd">
+	<error-handler name="global-error-handler" doc:id="5012c426-189a-429a-aa6b-8c8c234f8905">
+
+		<!-- APIKit router related exceptions -->
+		
+		<on-error-propagate type="APIKIT:BAD_REQUEST" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="4007d439-8fe7-4751-ab1b-e79aa4eb7716" >
+			<set-variable value="#[400]" doc:name="Set the HTTP Status - 400" doc:id="70007b27-fb2b-466b-98e2-2719af7e3295" variableName="httpStatus"/>
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="c46e110c-b459-4002-a736-a52778e5b4f3" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="APIKIT:METHOD_NOT_ALLOWED" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="a7bed874-9ad3-4fa5-8402-0d174b98a7e2" >
+			<set-variable value="#[405]" doc:name="Set the HTTP Status - 405" doc:id="173c560d-3da5-4b10-855a-dc108f97a4cb" variableName="httpStatus" />
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="dad94b10-6595-48d1-b609-9cb4ef28a31a" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="APIKIT:NOT_ACCEPTABLE" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="d5bd9d8c-374e-4173-8e89-3b04bf319589" >
+			<set-variable value="#[406]" doc:name="Set the HTTP Status - 406" doc:id="76c60d2a-edf3-46f1-953a-fd4f5b3336ff" variableName="httpStatus" />
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="5c6187d9-0b1c-422a-9029-7e3f0f801a91" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="APIKIT:NOT_FOUND" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="d80d5ca4-b582-4d02-afd2-f9d07780c8f0" >
+			<set-variable value="#[404]" doc:name="Set the HTTP Status - 404" doc:id="cab03a7b-07ba-4505-b657-c8e987ef9997" variableName="httpStatus" />
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="a31897a5-4fb4-4674-bd89-303c9fe200b1" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="APIKIT:UNSUPPORTED_MEDIA_TYPE" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="e30f1a43-9999-45a6-a2a7-d33408ce0cc6" >
+			<set-variable value="#[415]" doc:name="Set the HTTP Status - 415" doc:id="3b7d86ce-7abe-4e3c-98b3-bee88f42ec02" variableName="httpStatus" />
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="5508927f-8e99-4dff-9c9d-1f6266b3be02" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>	
+		
+		<!-- HTTP Related error handling -->	
+		
+		<on-error-propagate type="HTTP:BAD_REQUEST" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="3734bf70-14a0-4773-924c-9f2362eaa71d" >
+			<set-variable value="#[400]" doc:name="Set the HTTP Status - 400" doc:id="52f6e543-1b0e-46a0-b721-962310a5aed6" variableName="httpStatus" />
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="c920b98b-727e-4e7a-b0c3-c22f74c502ae" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:CLIENT_SECURITY" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="a43d6d9a-3ac0-4cf1-bad3-2753e68b5545" >
+			<set-variable value="#[401]" doc:name="Set the HTTP Status - 401" doc:id="e1e0969e-0b60-4274-b551-f09b2cfdeadc" variableName="httpStatus" />
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="65a2563b-1c01-40de-b1ec-c2066414f83b" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:CONNECTIVITY" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="3fae8bf9-00b7-4f91-9df2-55ca164b04f1" >
+			<set-variable value="#[503]" doc:name="Set the HTTP Status - 503" doc:id="0d516cc4-d993-4d21-955c-2b1f49dcbf95" variableName="httpStatus" />
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="0583f8e2-d4ef-494b-8e63-48c4ebf76fa8" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:FORBIDDEN" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="becceb90-1046-4f28-b604-f51390bd6d6b" >
+			<set-variable value="#[403]" doc:name="Set the HTTP Status - 403" doc:id="79ca0ada-8e91-4494-888e-ec9f45f26361" variableName="httpStatus" />
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="5691196e-5083-4abb-8cb7-40ff9b1ffeeb" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:INTERNAL_SERVER_ERROR" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="e269a0f4-71d0-4400-ba1c-264e0369bd98" >
+			<set-variable value="#[500]" doc:name="Set the HTTP Status - 500" doc:id="ed2473ac-f4e6-4b5b-b2de-e8663ddbe623" variableName="httpStatus" />
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="75a672c6-4696-4a38-9142-b105f439a6f7" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:METHOD_NOT_ALLOWED" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="a1cf7e86-2d4a-472d-8770-403ef0440f1c" >
+			<set-variable value="#[405]" doc:name="Set the HTTP Status - 405" doc:id="ccbd464c-7de8-4861-aae1-f24fadde1d31" variableName="httpStatus" />
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="9d7d7ac3-5a89-4549-8f28-2014bb485651" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:NOT_ACCEPTABLE" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="c4ef5ad4-0d37-4573-9598-c594f20bafe3" >
+			<set-variable value="#[406]" doc:name="Set the HTTP Status - 406" doc:id="b14dc8bf-e2fb-4db0-9989-82fa832d60c2" variableName="httpStatus" />
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="54e6d600-44f7-4a7a-88fd-d6241cdd7b5f" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:NOT_FOUND" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="7d2ef995-00ca-4c2c-b4a4-a766ce9b957f" >
+			<set-variable value="#[404]" doc:name="Set the HTTP Status - 404" doc:id="ff6c5faa-e23d-4cd6-aaea-2f171def87c8" variableName="httpStatus" />
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="abc64306-c8a7-474b-9226-911d8e2f4f4e" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:PARSING" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="a77b6779-57ce-488d-9f02-dbdb4224d407" >
+			<set-variable value="#[400]" doc:name="Set the HTTP Status - 400" doc:id="63b9add4-e5bc-4660-a6eb-69fee2d1d3e1" variableName="httpStatus" />
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="57d6a55b-6a3f-4715-bcde-68839856a5d8" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:RETRY_EXHAUSTED" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="dd023577-8563-4e4f-aeca-7492e5836609" >
+			<set-variable value="#[503]" doc:name="Set the HTTP Status - 503" doc:id="476d78ad-0f49-4d8e-93fd-588b9082b5c2" variableName="httpStatus" />
+      <flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="f150d812-5269-4aab-8268-87776be0ab53" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:SECURITY" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="9a830d96-6b8b-4190-9f27-d2daa15210ad" >
+			<set-variable value="#[401]" doc:name="Set the HTTP Status - 401" doc:id="188d4594-8a47-49fe-9b41-ac6c8dc1e6e5" variableName="httpStatus" />
+      			<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="9c2ff8f9-2d07-4a9d-958f-5c17ac5c6e05" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:TIMEOUT" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="ede7defa-467a-47dd-9575-a049ca56ffb7" >
+			<set-variable value="#[504]" doc:name="Set the HTTP Status - 504" doc:id="54670c31-d189-497a-8e29-6732d5a5fa09" variableName="httpStatus" />
+      			<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="b7cbf0ae-3f8c-4106-87f7-4b64f4b269ab" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:TOO_MANY_REQUESTS" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="7088ae12-f99c-4c4a-8137-858cbb37960b" >
+			<set-variable value="#[429]" doc:name="Set the HTTP Status - 429" doc:id="ee263f91-b9a1-43f0-b442-d47e75f5dcf2" variableName="httpStatus" />
+      			<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="4f985e34-75da-47c3-b39b-90a757eba6c6" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:UNAUTHORIZED" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="92a091e7-cf65-47a4-8518-6ed044a824b5" >
+			<set-variable value="#[403]" doc:name="Set the HTTP Status - 403" doc:id="7f17b090-3734-40e1-9bb8-e8099ea14f1a" variableName="httpStatus" />
+      			<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="0ce32a0f-b2e9-4177-a011-94df439e5256" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:UNSUPPORTED_MEDIA_TYPE" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="ebbc13f2-5799-4bdc-b100-173551329e1f" >
+			<set-variable value="#[415]" doc:name="Set the HTTP Status - 415" doc:id="0644b770-ec44-4b20-a82a-8a4b4e338bcf" variableName="httpStatus" />
+      			<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="c82fed47-8322-4641-ac34-456d03052477" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		
+		<!-- Generic CONNECTIVITY Related Exception handling start. Order matters -->
+		
+		<on-error-propagate type="RETRY_EXHAUSTED" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="97f16247-04c1-46d7-837a-6a925ab1301a" >
+			<set-variable value="#[503]" doc:name="Set the HTTP Status - 503" doc:id="1e1ac366-aefd-4274-b347-42d703846db3" variableName="httpStatus" />
+      			<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="d003b1e9-a371-4989-90ce-2faa433ab09a" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="REDELIVERY_EXHAUSTED" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="f39bfe64-3302-4588-b81c-7808ba258495" >
+			<set-variable value="#[503]" doc:name="Set the HTTP Status - 503" doc:id="84c546f3-a745-486d-9f09-f73a7c395c49" variableName="httpStatus" />
+      			<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="3efb8681-4c35-4be6-8029-14bd3809439d" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="CONNECTIVITY" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="9b4357ef-37dd-4573-9b0d-1a694c948ca6" >
+			<set-variable value="#[503]" doc:name="Set the HTTP Status - 503" doc:id="d03779cc-e5aa-4de3-b8ae-8b34583402ca" variableName="httpStatus" />
+      			<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="924bf3a7-1537-44a2-b2cb-fdce73d82f30" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="TIMEOUT" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="64ece05c-6cdc-445b-af99-18718c422d43" >
+			<set-variable value="#[504]" doc:name="Set the HTTP Status - 504" doc:id="dc7c36c4-6079-4cd3-a702-ef1d34042032" variableName="httpStatus" />
+      			<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="5ff762df-f928-4997-9c51-908f21b7aea3" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>		
+		<on-error-propagate type="TRANSFORMATION" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="271a52bb-33ba-45e4-ac9c-5445db881674" >
+			<set-variable value="#[400]" doc:name="Set the HTTP Status - 400" doc:id="d9d90341-2324-4b9d-9066-55f072bf18bd" variableName="httpStatus" />
+      			<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="afff2efb-3e59-4ef3-ace3-99daf6fb5013" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="EXPRESSION" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="f43db73e-3c51-4c64-8bd7-c346133c4f4b" >
+			<set-variable value="#[500]" doc:name="Set the HTTP Status - 500" doc:id="ed750299-fb64-4bc9-9026-fe2ca436d56c" variableName="httpStatus" />
+			<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="526b1927-1586-4997-bf8a-4f338a17bbf3" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>	
+		<on-error-propagate type="ROUTING" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="1f242994-1b97-4cb2-986f-34129f77a688" >
+			<set-variable value="#[400]" doc:name="Set the HTTP Status - 400" doc:id="77904164-a37b-4874-b163-cd914fd367a4" variableName="httpStatus" />
+      			<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="15a80a09-cff6-445a-baf0-6da82adfc28e" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		<on-error-propagate type="SECURITY" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="cf96c432-dd06-4162-8301-43e06aca18b8" >
+			<set-variable value="#[401]" doc:name="Set the HTTP Status - 401" doc:id="4ca47bca-2d45-41a1-a6af-d6d823e14284" variableName="httpStatus" />
+      			<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="f3912058-bf14-4f2d-99bc-893012ff5984" name="global-prepare-error-response-sub-flow"/>
+		</on-error-propagate>
+		
+		<!-- BUSINESS Related Exception handling start. Order matters -->
+		
+		
+		<!-- If none of the above matches then handle a the exception using generic handler -->
+		<on-error-propagate type="ANY" enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="b63a1729-a9f4-47ef-a2b4-47bc7b007ccb">
+			<set-variable value="#[500]" doc:name="Set HTTP Status - 500" variableName="httpStatus" />
+			<flow-ref doc:name="global-prepare-error-response-sub-flow" doc:id="6cb9286d-462c-40d5-956f-eff54269b399" name="#[global-prepare-error-response-sub-flow]" />
+		</on-error-propagate>
+
+		
+	</error-handler>
+	<sub-flow name="global-prepare-error-response-sub-flow" doc:id="965374dd-381f-4587-91d5-ac90bc28bcd8">
+        <ee:transform doc:name="Compose Error Payload" doc:id="c7513e4c-b982-4992-a8b2-e6e187e44ab3">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+    errorCode: error.errorType.identifier,
+    errorDateTime: now() as String { format: "yyyy-MM-dd'T'HH:mm:ss" },
+    errorDescription: error.description as String,
+    errorCorrelationId: correlationId
+}
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+    </sub-flow>
+	</mule>

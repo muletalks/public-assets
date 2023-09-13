@@ -1,0 +1,14 @@
+ # This workflow will build a MuleSoft project and deploy to the CloudHub DEV enviornment
+ 
+name: Build, Test and Deploy to DEV
+ 
+# Running your workflow when a pull request has been closed
+on:
+  push:
+   branches: [ develop ]
+
+jobs:
+  # Build, test and deplloy the Mule artifact using remote workflows
+  workflow:
+    uses: esocrm/bmw-esocrm-mule-workflows/.github/workflows/dev_workflow.yml@master
+    secrets: inherit

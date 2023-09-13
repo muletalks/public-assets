@@ -1,0 +1,12 @@
+name: Push Documentation to Confluence
+
+on:
+  push:
+   branches: [ develop ]
+  workflow_dispatch:
+
+# Reuse Workflow from Automation Util
+jobs:
+  documentation:
+    uses: ESOCRM/automation/.github/workflows/documentation_workflow_mule.yml@main
+    secrets: inherit

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:anypoint-mq="http://www.mulesoft.org/schema/mule/anypoint-mq" xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway"
+	xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd
+http://www.mulesoft.org/schema/mule/anypoint-mq http://www.mulesoft.org/schema/mule/anypoint-mq/current/mule-anypoint-mq.xsd">
+	<http:listener-config name="http-main-listener-config" doc:name="HTTP Listener config" doc:id="adeccc36-84ca-4668-9d1e-010973982893" >
+		<http:listener-connection host="${http.host}" port="${http.port}" readTimeout="${http.timeout}"/>
+		
+	</http:listener-config>
+	<configuration doc:name="Configuration" doc:id="83305291-c520-465f-b0cf-55c226c6c9e2" defaultErrorHandler-ref="global-error-handler" />
+	<secure-properties:config name="secure_properties_config" doc:name="Secure Properties Config" doc:id="a961ce1a-2a3b-428b-b723-cddd618f6bfe" file="properties/${mule.env}.properties" key="${mule.key}" />
+	<configuration-properties doc:name="Configuration properties" doc:id="d1868229-5ebd-4177-a329-65694e6ea65f" file="properties/${mule.env}.properties" />
+	<configuration-properties doc:name="Configuration properties" doc:id="fa0d2c99-f638-48d1-81db-4d2e57abf29a" file="properties/common.properties" />
+	<api-gateway:autodiscovery apiId="${api.id}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="1c005d41-6a52-4404-80b1-c0585fe4fe25" flowRef="${autodiscovery.flow}" />
+</mule>
